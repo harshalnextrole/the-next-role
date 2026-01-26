@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import CalendlyButton from "./CalendlyButton";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,14 +38,7 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href="https://calendly.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              Book Free Consultation
-            </a>
+            <CalendlyButton text="Book Free Consultation" />
           </div>
 
           {/* Mobile Menu Button */}
@@ -92,14 +86,10 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <a
-                href="https://calendly.com"
-                target="_blank"
-                rel="noopener noreferrer"
+              <CalendlyButton
+                text="Book Free Consultation"
                 className="btn-primary text-center"
-              >
-                Book Free Consultation
-              </a>
+              />
             </div>
           </div>
         )}

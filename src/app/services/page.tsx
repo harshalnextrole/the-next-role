@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import CalendlyButton from "@/components/CalendlyButton";
 
 export const metadata: Metadata = {
   title: "Services & Pricing | The Next Role",
@@ -45,14 +46,7 @@ export default function Services() {
               <div className="text-slate-400">|</div>
               <div className="text-slate-600">30 minutes</div>
             </div>
-            <a
-              href="https://calendly.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary text-lg px-8 py-4"
-            >
-              Book Your Free Consultation
-            </a>
+            <CalendlyButton className="btn-primary text-lg px-8 py-4" />
           </div>
         </div>
       </section>
@@ -119,14 +113,10 @@ export default function Services() {
               <div className="text-sm text-slate-500 mb-4">
                 Duration: 1 hour
               </div>
-              <a
-                href="https://calendly.com"
-                target="_blank"
-                rel="noopener noreferrer"
+              <CalendlyButton
+                text="Book Single Session"
                 className="btn-secondary w-full"
-              >
-                Book Single Session
-              </a>
+              />
             </div>
 
             {/* Resume/LinkedIn Review */}
@@ -175,14 +165,10 @@ export default function Services() {
               <div className="text-sm text-slate-500 mb-4">
                 Async delivery: ~30 min review time
               </div>
-              <a
-                href="https://calendly.com"
-                target="_blank"
-                rel="noopener noreferrer"
+              <CalendlyButton
+                text="Get Resume Reviewed"
                 className="btn-secondary w-full"
-              >
-                Get Resume Reviewed
-              </a>
+              />
             </div>
           </div>
         </div>
@@ -252,14 +238,10 @@ export default function Services() {
               <div className="text-sm text-slate-500 mb-4">
                 Duration: 4 weeks (~5 hours total)
               </div>
-              <a
-                href="https://calendly.com"
-                target="_blank"
-                rel="noopener noreferrer"
+              <CalendlyButton
+                text="Start Your Sprint"
                 className="btn-primary w-full"
-              >
-                Start Your Sprint
-              </a>
+              />
             </div>
 
             {/* Career Transformation */}
@@ -311,14 +293,10 @@ export default function Services() {
               <div className="text-sm text-slate-500 mb-4">
                 Duration: 2 months (~10 hours total)
               </div>
-              <a
-                href="https://calendly.com"
-                target="_blank"
-                rel="noopener noreferrer"
+              <CalendlyButton
+                text="Transform Your Career"
                 className="btn-secondary w-full"
-              >
-                Transform Your Career
-              </a>
+              />
             </div>
           </div>
         </div>
@@ -534,14 +512,7 @@ export default function Services() {
             Book a free intro call and we&apos;ll figure out the best path forward
             together.
           </p>
-          <a
-            href="https://calendly.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-lg hover:bg-primary-50 transition-colors duration-200 shadow-lg"
-          >
-            Book Your Free Consultation
-          </a>
+          <CalendlyButton className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-lg hover:bg-primary-50 transition-colors duration-200 shadow-lg" />
         </div>
       </section>
     </>

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import CalendlyButton from "@/components/CalendlyButton";
 
 export default function Home() {
   return (
@@ -22,14 +25,7 @@ export default function Home() {
               who just navigated the job market successfully.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://calendly.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-lg px-8 py-4"
-              >
-                Book Your Free Consultation
-              </a>
+              <CalendlyButton className="btn-primary text-lg px-8 py-4" />
               <Link href="/services" className="btn-secondary text-lg px-8 py-4">
                 View Services & Pricing
               </Link>
@@ -451,14 +447,7 @@ export default function Home() {
             Book a free 30-minute consultation to discuss your career goals and
             see if we&apos;re a good fit.
           </p>
-          <a
-            href="https://calendly.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-lg hover:bg-primary-50 transition-colors duration-200 shadow-lg"
-          >
-            Book Your Free Consultation
-          </a>
+          <CalendlyButton className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-lg hover:bg-primary-50 transition-colors duration-200 shadow-lg" />
           <p className="text-primary-200 mt-4 text-sm">
             No commitment required. Let&apos;s see how I can help.
           </p>

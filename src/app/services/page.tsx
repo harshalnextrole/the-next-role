@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import CalendlyButton from "@/components/CalendlyButton";
+import CalendlyModal from "@/components/CalendlyModal";
 
 export const metadata: Metadata = {
   title: "Services & Pricing | The Next Role",
@@ -46,7 +46,7 @@ export default function Services() {
               <div className="text-slate-400">|</div>
               <div className="text-slate-600">30 minutes</div>
             </div>
-            <CalendlyButton className="btn-primary text-lg px-8 py-4" />
+            <CalendlyModal className="btn-primary text-lg px-8 py-4" />
           </div>
         </div>
       </section>
@@ -113,7 +113,7 @@ export default function Services() {
               <div className="text-sm text-slate-500 mb-4">
                 Duration: 1 hour
               </div>
-              <CalendlyButton
+              <CalendlyModal
                 text="Book Single Session"
                 className="btn-secondary w-full"
               />
@@ -165,7 +165,7 @@ export default function Services() {
               <div className="text-sm text-slate-500 mb-4">
                 Async delivery: ~30 min review time
               </div>
-              <CalendlyButton
+              <CalendlyModal
                 text="Get Resume Reviewed"
                 className="btn-secondary w-full"
               />
@@ -238,7 +238,7 @@ export default function Services() {
               <div className="text-sm text-slate-500 mb-4">
                 Duration: 4 weeks (~5 hours total)
               </div>
-              <CalendlyButton
+              <CalendlyModal
                 text="Start Your Sprint"
                 className="btn-primary w-full"
               />
@@ -293,7 +293,7 @@ export default function Services() {
               <div className="text-sm text-slate-500 mb-4">
                 Duration: 2 months (~10 hours total)
               </div>
-              <CalendlyButton
+              <CalendlyModal
                 text="Transform Your Career"
                 className="btn-secondary w-full"
               />
@@ -512,7 +512,7 @@ export default function Services() {
             Book a free intro call and we&apos;ll figure out the best path forward
             together.
           </p>
-          <CalendlyButton className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-lg hover:bg-primary-50 transition-colors duration-200 shadow-lg" />
+          <CalendlyModal className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-lg hover:bg-primary-50 transition-colors duration-200 shadow-lg" />
         </div>
       </section>
     </>

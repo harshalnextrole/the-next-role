@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import CalendlyButton from "@/components/CalendlyButton";
+import CalendlyModal from "@/components/CalendlyModal";
 
 export const metadata: Metadata = {
   title: "About | The Next Role",
@@ -361,7 +361,7 @@ export default function About() {
             Ready to take the next step in your PM career? Book a free
             consultation and let&apos;s talk about where you want to go.
           </p>
-          <CalendlyButton className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-lg hover:bg-primary-50 transition-colors duration-200 shadow-lg" />
+          <CalendlyModal className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-lg hover:bg-primary-50 transition-colors duration-200 shadow-lg" />
         </div>
       </section>
     </>

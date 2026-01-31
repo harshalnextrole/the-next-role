@@ -12,13 +12,13 @@ export default function About() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900 text-white">
+      <section className="bg-navy-800 text-white">
         <div className="container-max section-padding !py-16">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              Meet Your Coach
+            <h1 className="font-display text-4xl sm:text-5xl font-bold mb-6">
+              Meet your coach
             </h1>
-            <p className="text-xl text-slate-300">
+            <p className="text-xl text-cream-300">
               Not a former PM. An active one who just did exactly what you&apos;re
               trying to do.
             </p>
@@ -34,18 +34,18 @@ export default function About() {
               {/* Photo Placeholder */}
               <div className="lg:col-span-1">
                 <div className="sticky top-24">
-                  <div className="aspect-square bg-gradient-to-br from-primary-100 to-accent-100 rounded-2xl flex items-center justify-center mb-6">
+                  <div className="aspect-square bg-gradient-to-br from-navy-100 to-coral-100 rounded-2xl flex items-center justify-center mb-6">
                     <div className="text-center">
-                      <div className="w-32 h-32 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <div className="w-32 h-32 bg-gradient-to-br from-navy-500 to-coral-500 rounded-full mx-auto mb-4 flex items-center justify-center">
                         <span className="text-white text-4xl font-bold">HG</span>
                       </div>
-                      <p className="text-slate-500 text-sm">Photo coming soon</p>
+                      <p className="text-navy-400 text-sm">Photo coming soon</p>
                     </div>
                   </div>
                   <div className="space-y-3">
-                    <div className="flex items-center text-slate-600">
+                    <div className="flex items-center text-navy-500">
                       <svg
-                        className="w-5 h-5 mr-3 text-primary-500"
+                        className="w-5 h-5 mr-3 text-coral-500"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -59,9 +59,9 @@ export default function About() {
                       </svg>
                       Product Manager @ Microsoft
                     </div>
-                    <div className="flex items-center text-slate-600">
+                    <div className="flex items-center text-navy-500">
                       <svg
-                        className="w-5 h-5 mr-3 text-primary-500"
+                        className="w-5 h-5 mr-3 text-coral-500"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -81,9 +81,9 @@ export default function About() {
                       </svg>
                       Seattle → Toronto
                     </div>
-                    <div className="flex items-center text-slate-600">
+                    <div className="flex items-center text-navy-500">
                       <svg
-                        className="w-5 h-5 mr-3 text-primary-500"
+                        className="w-5 h-5 mr-3 text-coral-500"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -103,54 +103,54 @@ export default function About() {
 
               {/* Story Content */}
               <div className="lg:col-span-2 prose prose-lg max-w-none">
-                <h2 className="text-3xl font-bold text-slate-900 mb-6">
-                  My Story
+                <h2 className="font-display text-3xl font-bold text-navy-800 mb-6">
+                  My story
                 </h2>
 
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-navy-600 leading-relaxed">
                   I started my career path in India, moved to Dubai, and eventually
                   made my way to North America for my Master&apos;s degree at Purdue
                   University—where I specialized in AI Management & Policy.
                 </p>
 
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-navy-600 leading-relaxed">
                   In 2021, I landed a PM internship at Microsoft. By 2022, I converted
                   to a full-time Product Manager role, and I&apos;ve since grown to PM2,
                   shipping features to over 320 million users and working on
                   cutting-edge AI agents.
                 </p>
 
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-navy-600 leading-relaxed">
                   But here&apos;s the thing: I recently decided to move back to Canada
                   and join Docebo as an AI Product Manager. That meant going through
                   the job search process all over again—in 2025, in a tough market.
                 </p>
 
-                <div className="bg-primary-50 border-l-4 border-primary-500 p-6 my-8 rounded-r-lg">
-                  <p className="text-slate-700 font-medium mb-0">
+                <div className="bg-coral-50 border-l-4 border-coral-500 p-6 my-8 rounded-r-lg">
+                  <p className="text-navy-700 font-medium mb-0">
                     I applied to 70 jobs. Got 25 interviews. Received 3 offers from
                     companies like Docebo, Thinkific, and Loopio. I know exactly what
                     works right now because I just did it.
                   </p>
                 </div>
 
-                <h3 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
-                  Why I Started Coaching
+                <h3 className="font-display text-2xl font-bold text-navy-800 mt-8 mb-4">
+                  Why I started coaching
                 </h3>
 
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-navy-600 leading-relaxed">
                   Throughout my journey—as an immigrant, a career switcher, a startup
                   founder (I built MyCart), and a big tech PM—I&apos;ve had incredible
                   mentors who helped me navigate each transition.
                 </p>
 
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-navy-600 leading-relaxed">
                   Now I want to pay it forward. I believe everyone deserves guidance
                   from someone who&apos;s been in their shoes recently, not someone who
                   left the industry years ago.
                 </p>
 
-                <p className="text-slate-600 leading-relaxed">
+                <p className="text-navy-600 leading-relaxed">
                   My mission is simple:{" "}
                   <strong>
                     Bridge the gap between where you are and where you belong in your
@@ -158,7 +158,7 @@ export default function About() {
                   </strong>
                 </p>
 
-                <h3 className="text-2xl font-bold text-slate-900 mt-8 mb-4">
+                <h3 className="font-display text-2xl font-bold text-navy-800 mt-8 mb-4">
                   What Makes Me Different
                 </h3>
 
@@ -191,10 +191,10 @@ export default function About() {
                   ].map((item, i) => (
                     <div
                       key={i}
-                      className="flex items-start p-4 bg-slate-50 rounded-lg"
+                      className="flex items-start p-4 bg-cream-100 rounded-lg"
                     >
                       <svg
-                        className="w-5 h-5 text-primary-500 mr-3 mt-0.5 flex-shrink-0"
+                        className="w-5 h-5 text-coral-500 mr-3 mt-0.5 flex-shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -207,10 +207,10 @@ export default function About() {
                         />
                       </svg>
                       <div>
-                        <p className="font-semibold text-slate-900">
+                        <p className="font-semibold text-navy-800">
                           {item.title}
                         </p>
-                        <p className="text-sm text-slate-600">{item.desc}</p>
+                        <p className="text-sm text-navy-600">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -222,11 +222,11 @@ export default function About() {
       </section>
 
       {/* Journey Timeline */}
-      <section className="section-padding bg-slate-50">
+      <section className="section-padding bg-cream-100">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              My Journey
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+              The journey
             </h2>
           </div>
 
@@ -270,24 +270,24 @@ export default function About() {
                     <div
                       className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold ${
                         item.current
-                          ? "bg-primary-500 text-white"
-                          : "bg-white border-2 border-slate-300 text-slate-600"
+                          ? "bg-coral-500 text-white"
+                          : "bg-white border-2 border-cream-300 text-navy-500"
                       }`}
                     >
                       {item.year.slice(-2)}
                     </div>
                     {i < 5 && (
-                      <div className="w-0.5 h-full bg-slate-300 mt-2"></div>
+                      <div className="w-0.5 h-full bg-cream-300 mt-2"></div>
                     )}
                   </div>
                   <div className="pb-8">
-                    <div className="text-sm text-primary-600 font-medium">
+                    <div className="text-sm text-coral-600 font-medium">
                       {item.year}
                     </div>
-                    <h3 className="text-xl font-semibold text-slate-900">
+                    <h3 className="font-display text-xl font-semibold text-navy-800">
                       {item.title}
                     </h3>
-                    <p className="text-slate-600">{item.desc}</p>
+                    <p className="text-navy-500">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -300,15 +300,15 @@ export default function About() {
       <section className="section-padding bg-white">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Companies I&apos;ve Interviewed With
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+              Companies I know inside out
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-navy-500 max-w-2xl mx-auto">
               I know the interview processes at these companies firsthand.
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-8 text-slate-400">
+          <div className="flex flex-wrap justify-center gap-8 text-cream-400">
             {[
               "Microsoft",
               "Docebo",
@@ -321,7 +321,7 @@ export default function About() {
             ].map((company, i) => (
               <div
                 key={i}
-                className="px-6 py-3 bg-slate-100 rounded-lg text-slate-600 font-medium"
+                className="px-6 py-3 bg-cream-200 rounded-lg text-navy-600 font-medium"
               >
                 {company}
               </div>
@@ -331,15 +331,15 @@ export default function About() {
       </section>
 
       {/* Mission Section */}
-      <section className="section-padding bg-slate-900 text-white">
+      <section className="section-padding bg-navy-800 text-white">
         <div className="container-max">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6">My Mission</h2>
-            <blockquote className="text-2xl sm:text-3xl font-light text-slate-300 italic mb-8">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold mb-6">The mission</h2>
+            <blockquote className="text-2xl sm:text-3xl font-light text-cream-300 italic mb-8">
               &ldquo;Bridging the gap between where you are and where you belong in
               your career.&rdquo;
             </blockquote>
-            <p className="text-lg text-slate-400 mb-8">
+            <p className="text-lg text-cream-400 mb-8">
               I believe in empowering the next generation to discover their
               talent, so that no potential goes unplayed. Everyone deserves a
               career they love—one that helps them achieve their ambitions.
@@ -352,16 +352,15 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+      <section className="section-padding bg-navy-800 text-white">
         <div className="container-max text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Let&apos;s Work Together
+          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
+            Ready to get started?
           </h2>
-          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Ready to take the next step in your PM career? Book a free
-            consultation and let&apos;s talk about where you want to go.
+          <p className="text-xl text-coral-100 mb-8 max-w-2xl mx-auto">
+            Book a free call. No pitch, no pressure — just an honest conversation about where you want to go.
           </p>
-          <CalendlyModal className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-lg hover:bg-primary-50 transition-colors duration-200 shadow-lg" />
+          <CalendlyModal className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-coral-700 bg-white rounded-lg hover:bg-coral-50 transition-colors duration-200 shadow-lg" />
         </div>
       </section>
     </>

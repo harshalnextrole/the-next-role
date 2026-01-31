@@ -7,265 +7,202 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
+      <section className="relative bg-navy-800 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-700"></div>
         <div className="container-max section-padding relative">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-primary-500/20 rounded-full text-primary-300 text-sm font-medium mb-6">
-              <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-              Now accepting new clients for 2026
+            <div className="inline-flex items-center px-4 py-2 bg-coral-500/15 border border-coral-500/30 rounded-full text-coral-300 text-sm font-medium mb-8">
+              <span className="w-2 h-2 bg-coral-400 rounded-full mr-2 animate-pulse"></span>
+              Now accepting clients for 2026
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Land Your Dream{" "}
-              <span className="gradient-text">Product Manager</span> Role
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              I got 3 offers from 70 apps.{" "}
+              <span className="text-coral-400">Let me show you how.</span>
             </h1>
-            <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Bridging the gap between where you are and where you belong in
-              your career. Get personalized coaching from an active Microsoft PM
-              who just navigated the job market successfully.
+            <p className="text-xl text-cream-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+              I&apos;m an active PM at Microsoft coaching people into product roles.
+              Not theory from a textbook &mdash; real strategies from someone who
+              just navigated the job market and won.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CalendlyModal className="btn-primary text-lg px-8 py-4" />
-              <Link href="/services" className="btn-secondary text-lg px-8 py-4">
+              <CalendlyModal
+                text="Let's Talk About Your Career"
+                className="btn-primary text-lg px-8 py-4"
+              />
+              <Link href="/services" className="btn-secondary text-lg px-8 py-4 !border-cream-400/30 !text-cream-200 hover:!bg-white/10 hover:!border-cream-300">
                 View Services & Pricing
               </Link>
             </div>
-            <div className="mt-12 flex flex-wrap justify-center gap-8 text-slate-400">
+
+            {/* Stats */}
+            <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-white">25+</div>
-                <div className="text-sm">Interviews Landed</div>
+                <div className="text-3xl font-display font-bold text-coral-400">70</div>
+                <div className="text-sm text-cream-400 mt-1">Applications</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-white">3</div>
-                <div className="text-sm">Job Offers Received</div>
+                <div className="text-3xl font-display font-bold text-coral-400">25</div>
+                <div className="text-sm text-cream-400 mt-1">Interviews</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-white">36%</div>
-                <div className="text-sm">Interview Rate</div>
+                <div className="text-3xl font-display font-bold text-coral-400">3</div>
+                <div className="text-sm text-cream-400 mt-1">Offers</div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Credibility Bar */}
+      <section className="bg-cream-200 py-6 border-b border-cream-300">
+        <div className="container-max px-4">
+          <div className="flex flex-wrap items-center justify-center gap-8 text-navy-400 text-sm font-medium">
+            <span>Currently at</span>
+            <span className="text-navy-700 font-display font-semibold text-base">Microsoft</span>
+            <span className="text-cream-400">|</span>
+            <span className="text-navy-700 font-display font-semibold text-base">Purdue University</span>
+            <span className="text-cream-400">|</span>
+            <span>Joining</span>
+            <span className="text-navy-700 font-display font-semibold text-base">Docebo</span>
           </div>
         </div>
       </section>
 
       {/* Who It's For Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-cream-100">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Is This For You?
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+              Sound like you?
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              I work with ambitious individuals ready to break into or level up
-              in product management.
+            <p className="text-xl text-navy-500 max-w-2xl mx-auto">
+              I work with people who are ready to stop guessing and start
+              landing interviews.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                icon: "🔄",
                 title: "Career Switchers",
                 description:
-                  "Engineers, designers, consultants, or MBAs looking to transition into product management.",
+                  'Engineers, designers, consultants, or MBAs thinking "I want to be a PM" but not sure how to get there.',
+                tag: "Most common",
               },
               {
-                icon: "📈",
-                title: "Junior/Mid PMs",
+                title: "Junior & Mid PMs",
                 description:
-                  "Current PMs seeking to level up to Senior PM or break into big tech companies.",
+                  "You're already a PM but want to level up to Senior or break into big tech. The jump feels unclear.",
               },
               {
-                icon: "🎓",
                 title: "Students & New Grads",
                 description:
-                  "Bootcamp grads, undergrad/grad students, and co-op students preparing for PM roles.",
+                  "About to graduate or just finished a bootcamp. You need someone to show you how the game actually works.",
               },
               {
-                icon: "🌍",
-                title: "Newcomers to Canada",
+                title: "New to Canada",
                 description:
-                  "International professionals with tech/business experience looking to break into Canadian PM roles.",
+                  "You have experience back home but the Canadian market feels like a black box. I've been there.",
               },
             ].map((item, index) => (
               <div
                 key={index}
-                className="card text-center hover:scale-105 transition-transform duration-300"
+                className="card relative hover:border-coral-300 transition-all"
               >
-                <div className="text-4xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                {item.tag && (
+                  <span className="absolute -top-3 left-4 bg-coral-500 text-white text-xs font-medium px-3 py-1 rounded-full">
+                    {item.tag}
+                  </span>
+                )}
+                <h3 className="text-xl font-display font-semibold text-navy-800 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-slate-600">{item.description}</p>
+                <p className="text-navy-500">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Why Choose Me Section */}
-      <section className="section-padding bg-slate-50">
+      {/* Why Me Section */}
+      <section className="section-padding bg-white">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Why Work With Me?
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+              Why listen to me?
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Real experience. Recent success. Relevant guidance.
+            <p className="text-xl text-navy-500 max-w-2xl mx-auto">
+              I&apos;m not someone who used to be a PM ten years ago. I&apos;m in it right now.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: (
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                ),
                 title: "Active Microsoft PM",
                 description:
-                  "Not a former practitioner—I'm currently shipping features to 320M+ users and working on AI agents. Real-time industry knowledge.",
+                  "Shipping features to 320M+ users, working on AI agents. I know what modern PM work actually looks like.",
               },
               {
-                icon: (
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"
-                    />
-                  </svg>
-                ),
-                title: "Fresh Job Search Success",
+                title: "Just Did the Job Search",
                 description:
-                  "3 offers from 70 applications, 25 interviews at companies like Docebo, Thinkific, Loopio, PagerDuty. I know what works in 2025/2026.",
+                  "70 applications, 25 interviews, 3 offers. Docebo, Thinkific, Loopio, PagerDuty. I know what's working right now.",
               },
               {
-                icon: (
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                ),
-                title: "Immigrant Journey",
+                title: "India → Dubai → Canada",
                 description:
-                  "India → Dubai → Canada. I understand navigating Canadian professional culture and breaking into tech as a newcomer.",
+                  "I've navigated immigration, cultural shifts, and breaking into North American tech. I get the newcomer struggle.",
               },
               {
-                icon: (
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                ),
-                title: "Startup + Big Tech",
+                title: "Startup Founder + Big Tech",
                 description:
-                  "Founded MyCart, worked at Microsoft. I can speak authentically to both paths and help you decide what's right for you.",
+                  "Built MyCart from scratch, then joined Microsoft. I can help you figure out which path is right for you.",
               },
               {
-                icon: (
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                    />
-                  </svg>
-                ),
-                title: "AI & Future-Focused",
+                title: "AI Product Specialist",
                 description:
-                  "Master's in AI Management & Policy from Purdue. I can help you position for AI-first companies reshaping every PM role.",
+                  "Master's in AI Management from Purdue. Joining Docebo as an AI PM. I can position you for what's next.",
               },
               {
-                icon: (
-                  <svg
-                    className="w-8 h-8"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                ),
-                title: "GTA Market Expert",
+                title: "GTA Market Insider",
                 description:
-                  "Deep knowledge of Shopify, Wealthsimple, 1Password, Cohere, plus Canadian offices of Google, Meta, Microsoft. CAD vs USD dynamics.",
+                  "Shopify, Wealthsimple, 1Password, Cohere, plus Google, Meta, Microsoft Canada. I know the local landscape.",
               },
             ].map((item, index) => (
-              <div key={index} className="card">
-                <div className="w-14 h-14 bg-primary-100 rounded-xl flex items-center justify-center text-primary-600 mb-4">
-                  {item.icon}
+              <div key={index} className="card hover:border-coral-300 transition-all">
+                <div className="w-10 h-10 bg-coral-50 rounded-lg flex items-center justify-center text-coral-500 mb-4">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                <h3 className="text-lg font-display font-semibold text-navy-800 mb-2">
                   {item.title}
                 </h3>
-                <p className="text-slate-600">{item.description}</p>
+                <p className="text-navy-500">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Services Preview Section */}
-      <section className="section-padding bg-white">
+      {/* Services Preview */}
+      <section className="section-padding bg-cream-100">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Services That Fit Your Journey
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+              Pick what fits
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              From quick resume reviews to comprehensive career transformations.
-              Student rates available.
+            <p className="text-xl text-navy-500 max-w-2xl mx-auto">
+              From a quick resume fix to a full career transformation.
+              Student rates on everything.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -275,11 +212,11 @@ export default function Home() {
                 price: "$150",
                 studentPrice: "$100",
                 description:
-                  "60-min deep dive into your specific challenge—resume, interview prep, or career strategy.",
+                  "60-minute deep dive into your resume, interview prep, or career strategy.",
                 features: [
                   "60-minute session",
                   "Personalized feedback",
-                  "Action items",
+                  "Actionable next steps",
                 ],
               },
               {
@@ -287,11 +224,11 @@ export default function Home() {
                 price: "$400",
                 studentPrice: "$300",
                 description:
-                  "4 sessions over 4 weeks to overhaul your entire job search approach.",
+                  "4 weeks to completely overhaul your job search. The most popular option.",
                 features: [
                   "4 sessions over 4 weeks",
-                  "Resume overhaul",
-                  "LinkedIn optimization",
+                  "Resume + LinkedIn overhaul",
+                  "Target company strategy",
                   "Mock interviews",
                 ],
                 popular: true,
@@ -301,12 +238,12 @@ export default function Home() {
                 price: "$800",
                 studentPrice: "$500",
                 description:
-                  "8 sessions over 2 months for complete career pivot support.",
+                  "2 months of support for a complete career pivot into product management.",
                 features: [
                   "8 sessions over 2 months",
                   "Full pivot support",
-                  "Application prep",
-                  "Interview coaching",
+                  "Application + interview prep",
+                  "Offer negotiation help",
                 ],
               },
             ].map((service, index) => (
@@ -314,32 +251,32 @@ export default function Home() {
                 key={index}
                 className={`card relative ${
                   service.popular
-                    ? "ring-2 ring-primary-500 scale-105"
+                    ? "border-2 border-coral-500 scale-[1.02]"
                     : ""
                 }`}
               >
                 {service.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-500 text-white text-sm font-medium px-4 py-1 rounded-full">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-coral-500 text-white text-sm font-medium px-4 py-1 rounded-full">
                     Most Popular
                   </div>
                 )}
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                <h3 className="text-xl font-display font-semibold text-navy-800 mb-2">
                   {service.name}
                 </h3>
                 <div className="mb-4">
-                  <span className="text-3xl font-bold text-slate-900">
+                  <span className="text-3xl font-display font-bold text-navy-800">
                     {service.price}
                   </span>
-                  <span className="text-slate-500 ml-2">
+                  <span className="text-navy-400 ml-2">
                     / {service.studentPrice} student
                   </span>
                 </div>
-                <p className="text-slate-600 mb-4">{service.description}</p>
+                <p className="text-navy-500 mb-4">{service.description}</p>
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center text-slate-600">
+                    <li key={i} className="flex items-center text-navy-500">
                       <svg
-                        className="w-5 h-5 text-green-500 mr-2"
+                        className="w-5 h-5 text-forest-500 mr-2 flex-shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -369,7 +306,7 @@ export default function Home() {
           <div className="text-center mt-8">
             <Link
               href="/services"
-              className="text-primary-600 font-semibold hover:text-primary-700"
+              className="text-coral-500 font-semibold hover:text-coral-600 transition-colors"
             >
               View all services & pricing →
             </Link>
@@ -378,14 +315,14 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="section-padding bg-slate-50">
+      <section className="section-padding bg-white">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              What Clients Say
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+              What clients say
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Real results from real people.
+            <p className="text-xl text-navy-500 max-w-2xl mx-auto">
+              Real feedback from real people. More coming soon.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -414,7 +351,7 @@ export default function Home() {
                   {[...Array(5)].map((_, i) => (
                     <svg
                       key={i}
-                      className="w-5 h-5 text-yellow-400"
+                      className="w-5 h-5 text-coral-400"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -422,14 +359,14 @@ export default function Home() {
                     </svg>
                   ))}
                 </div>
-                <p className="text-slate-600 italic mb-4">
+                <p className="text-navy-600 italic mb-4">
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
                 <div>
-                  <p className="font-semibold text-slate-900">
+                  <p className="font-display font-semibold text-navy-800">
                     {testimonial.name}
                   </p>
-                  <p className="text-slate-500 text-sm">{testimonial.role}</p>
+                  <p className="text-navy-400 text-sm">{testimonial.role}</p>
                 </div>
               </div>
             ))}
@@ -438,18 +375,21 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+      <section className="section-padding bg-navy-800 text-white">
         <div className="container-max text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Ready to Land Your Next Role?
+          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
+            Ready to make your next move?
           </h2>
-          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Book a free 30-minute consultation to discuss your career goals and
-            see if we&apos;re a good fit.
+          <p className="text-xl text-cream-300 mb-8 max-w-2xl mx-auto">
+            Book a free 30-minute call. No pitch, no pressure &mdash; just an honest
+            conversation about where you want to go.
           </p>
-          <CalendlyModal className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-lg hover:bg-primary-50 transition-colors duration-200 shadow-lg" />
-          <p className="text-primary-200 mt-4 text-sm">
-            No commitment required. Let&apos;s see how I can help.
+          <CalendlyModal
+            text="Let's Talk About Your Career"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-navy-800 bg-coral-400 rounded-lg hover:bg-coral-300 transition-all duration-200 shadow-lg hover:shadow-xl"
+          />
+          <p className="text-navy-400 mt-4 text-sm">
+            Free. 30 minutes. No commitment.
           </p>
         </div>
       </section>

@@ -14,15 +14,15 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200">
+    <header className="sticky top-0 z-50 bg-cream-100/95 backdrop-blur-sm border-b border-cream-300">
       <nav className="container-max section-padding !py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary-600 to-accent-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">N</span>
+            <div className="w-10 h-10 bg-navy-800 rounded-lg flex items-center justify-center">
+              <span className="text-coral-400 font-display font-bold text-xl">N</span>
             </div>
-            <span className="text-xl font-bold text-slate-900">
+            <span className="text-xl font-display font-bold text-navy-800">
               The Next Role
             </span>
           </Link>
@@ -33,17 +33,17 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-slate-600 hover:text-primary-600 font-medium transition-colors"
+                className="text-navy-600 hover:text-coral-500 font-medium transition-colors"
               >
                 {link.label}
               </Link>
             ))}
-            <CalendlyModal text="Book Free Consultation" />
+            <CalendlyModal text="Let's Talk" />
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-slate-600"
+            className="md:hidden p-2 text-navy-600"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -74,20 +74,20 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-slate-200 pt-4">
+          <div className="md:hidden mt-4 pb-4 border-t border-cream-300 pt-4">
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-slate-600 hover:text-primary-600 font-medium transition-colors"
+                  className="text-navy-600 hover:text-coral-500 font-medium transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
               <CalendlyModal
-                text="Book Free Consultation"
+                text="Let's Talk"
                 className="btn-primary text-center"
               />
             </div>

@@ -48,7 +48,7 @@ export default function RootLayout({
           href="https://assets.calendly.com/assets/external/widget.css"
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-slate-50">
+      <body className="min-h-screen flex flex-col bg-cream-100">
         <CalendlyPreload />
         <Header />
         <main className="flex-grow">{children}</main>

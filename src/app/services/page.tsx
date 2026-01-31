@@ -12,13 +12,13 @@ export default function Services() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-primary-900 to-slate-900 text-white">
+      <section className="bg-navy-800 text-white">
         <div className="container-max section-padding !py-16">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+            <h1 className="font-display text-4xl sm:text-5xl font-bold mb-6">
               Services & Pricing
             </h1>
-            <p className="text-xl text-slate-300">
+            <p className="text-xl text-cream-300">
               Flexible options to match where you are in your career journey.
               All services include student rates.
             </p>
@@ -27,24 +27,24 @@ export default function Services() {
       </section>
 
       {/* Free Consultation */}
-      <section className="section-padding bg-primary-50">
+      <section className="section-padding bg-coral-50">
         <div className="container-max">
           <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center px-4 py-2 bg-forest-100 text-forest-700 rounded-full text-sm font-medium mb-4">
               Start Here
             </div>
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Free Intro Call
+            <h2 className="font-display text-3xl font-bold text-navy-800 mb-4">
+              Start here — it&apos;s free
             </h2>
-            <p className="text-xl text-slate-600 mb-6 max-w-2xl mx-auto">
+            <p className="text-xl text-navy-500 mb-6 max-w-2xl mx-auto">
               A 30-minute assessment to understand your career goals, identify
               skill gaps, and create actionable next steps. No commitment
               required.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-              <div className="text-4xl font-bold text-green-600">FREE</div>
-              <div className="text-slate-400">|</div>
-              <div className="text-slate-600">30 minutes</div>
+              <div className="text-4xl font-bold text-forest-600">FREE</div>
+              <div className="text-cream-400">|</div>
+              <div className="text-navy-500">30 minutes</div>
             </div>
             <CalendlyModal className="btn-primary text-lg px-8 py-4" />
           </div>
@@ -55,10 +55,10 @@ export default function Services() {
       <section className="section-padding bg-white">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Individual Services
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+              One-off sessions
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-navy-500 max-w-2xl mx-auto">
               Pay-per-session options for focused support on specific
               challenges.
             </p>
@@ -66,24 +66,24 @@ export default function Services() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Single Session */}
-            <div className="card border border-slate-200">
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">
+            <div className="card border border-cream-300">
+              <h3 className="font-display text-2xl font-bold text-navy-800 mb-2">
                 Single Session
               </h3>
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-4xl font-bold text-slate-900">$150</span>
-                <span className="text-slate-500">CAD</span>
-                <span className="text-slate-400">|</span>
-                <span className="text-primary-600 font-medium">
+                <span className="text-4xl font-bold text-navy-800">$150</span>
+                <span className="text-navy-400">CAD</span>
+                <span className="text-cream-400">|</span>
+                <span className="text-coral-600 font-medium">
                   $100 student rate
                 </span>
               </div>
-              <p className="text-slate-600 mb-6">
+              <p className="text-navy-500 mb-6">
                 A 60-minute deep dive into your specific challenge. Perfect for
                 focused help on one area.
               </p>
               <div className="space-y-3 mb-6">
-                <h4 className="font-semibold text-slate-900">
+                <h4 className="font-semibold text-navy-800">
                   Choose your focus:
                 </h4>
                 {[
@@ -94,7 +94,7 @@ export default function Services() {
                 ].map((item, i) => (
                   <div key={i} className="flex items-start">
                     <svg
-                      className="w-5 h-5 text-primary-500 mr-3 mt-0.5 flex-shrink-0"
+                      className="w-5 h-5 text-coral-500 mr-3 mt-0.5 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -106,11 +106,11 @@ export default function Services() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    <span className="text-slate-600">{item}</span>
+                    <span className="text-navy-500">{item}</span>
                   </div>
                 ))}
               </div>
-              <div className="text-sm text-slate-500 mb-4">
+              <div className="text-sm text-navy-400 mb-4">
                 Duration: 1 hour
               </div>
               <CalendlyModal
@@ -120,24 +120,24 @@ export default function Services() {
             </div>
 
             {/* Resume/LinkedIn Review */}
-            <div className="card border border-slate-200">
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">
+            <div className="card border border-cream-300">
+              <h3 className="font-display text-2xl font-bold text-navy-800 mb-2">
                 Resume/LinkedIn Review
               </h3>
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-4xl font-bold text-slate-900">$50</span>
-                <span className="text-slate-500">CAD</span>
-                <span className="text-slate-400">|</span>
-                <span className="text-primary-600 font-medium">
+                <span className="text-4xl font-bold text-navy-800">$50</span>
+                <span className="text-navy-400">CAD</span>
+                <span className="text-cream-400">|</span>
+                <span className="text-coral-600 font-medium">
                   $25 student rate
                 </span>
               </div>
-              <p className="text-slate-600 mb-6">
+              <p className="text-navy-500 mb-6">
                 Async detailed written feedback with specific rewrite
                 suggestions. Perfect if you need quick, actionable feedback.
               </p>
               <div className="space-y-3 mb-6">
-                <h4 className="font-semibold text-slate-900">You&apos;ll receive:</h4>
+                <h4 className="font-semibold text-navy-800">You&apos;ll receive:</h4>
                 {[
                   "Line-by-line feedback",
                   "Specific rewrite suggestions",
@@ -146,7 +146,7 @@ export default function Services() {
                 ].map((item, i) => (
                   <div key={i} className="flex items-start">
                     <svg
-                      className="w-5 h-5 text-primary-500 mr-3 mt-0.5 flex-shrink-0"
+                      className="w-5 h-5 text-coral-500 mr-3 mt-0.5 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -158,11 +158,11 @@ export default function Services() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    <span className="text-slate-600">{item}</span>
+                    <span className="text-navy-500">{item}</span>
                   </div>
                 ))}
               </div>
-              <div className="text-sm text-slate-500 mb-4">
+              <div className="text-sm text-navy-400 mb-4">
                 Async delivery: ~30 min review time
               </div>
               <CalendlyModal
@@ -175,40 +175,40 @@ export default function Services() {
       </section>
 
       {/* Package Services */}
-      <section className="section-padding bg-slate-50">
+      <section className="section-padding bg-cream-100">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Coaching Packages
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+              Go deeper
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-navy-500 max-w-2xl mx-auto">
               Comprehensive support for your job search or career transition.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Job Search Sprint */}
-            <div className="card border-2 border-primary-500 relative">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-500 text-white text-sm font-medium px-4 py-1 rounded-full">
+            <div className="card border-2 border-coral-500 relative">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-coral-500 text-white text-sm font-medium px-4 py-1 rounded-full">
                 Most Popular
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">
+              <h3 className="font-display text-2xl font-bold text-navy-800 mb-2">
                 Job Search Sprint
               </h3>
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-4xl font-bold text-slate-900">$400</span>
-                <span className="text-slate-500">CAD</span>
-                <span className="text-slate-400">|</span>
-                <span className="text-primary-600 font-medium">
+                <span className="text-4xl font-bold text-navy-800">$400</span>
+                <span className="text-navy-400">CAD</span>
+                <span className="text-cream-400">|</span>
+                <span className="text-coral-600 font-medium">
                   $300 student rate
                 </span>
               </div>
-              <p className="text-slate-600 mb-6">
+              <p className="text-navy-500 mb-6">
                 4 sessions over 4 weeks to completely overhaul your job search
                 approach and get you interview-ready.
               </p>
               <div className="space-y-3 mb-6">
-                <h4 className="font-semibold text-slate-900">What&apos;s included:</h4>
+                <h4 className="font-semibold text-navy-800">What&apos;s included:</h4>
                 {[
                   "Complete resume overhaul",
                   "LinkedIn profile optimization",
@@ -219,7 +219,7 @@ export default function Services() {
                 ].map((item, i) => (
                   <div key={i} className="flex items-start">
                     <svg
-                      className="w-5 h-5 text-primary-500 mr-3 mt-0.5 flex-shrink-0"
+                      className="w-5 h-5 text-coral-500 mr-3 mt-0.5 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -231,11 +231,11 @@ export default function Services() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    <span className="text-slate-600">{item}</span>
+                    <span className="text-navy-500">{item}</span>
                   </div>
                 ))}
               </div>
-              <div className="text-sm text-slate-500 mb-4">
+              <div className="text-sm text-navy-400 mb-4">
                 Duration: 4 weeks (~5 hours total)
               </div>
               <CalendlyModal
@@ -245,24 +245,24 @@ export default function Services() {
             </div>
 
             {/* Career Transformation */}
-            <div className="card border border-slate-200">
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">
+            <div className="card border border-cream-300">
+              <h3 className="font-display text-2xl font-bold text-navy-800 mb-2">
                 Career Transformation
               </h3>
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-4xl font-bold text-slate-900">$800</span>
-                <span className="text-slate-500">CAD</span>
-                <span className="text-slate-400">|</span>
-                <span className="text-primary-600 font-medium">
+                <span className="text-4xl font-bold text-navy-800">$800</span>
+                <span className="text-navy-400">CAD</span>
+                <span className="text-cream-400">|</span>
+                <span className="text-coral-600 font-medium">
                   $500 student rate
                 </span>
               </div>
-              <p className="text-slate-600 mb-6">
+              <p className="text-navy-500 mb-6">
                 8 sessions over 2 months for a complete career pivot. Ideal for
                 career switchers or major transitions.
               </p>
               <div className="space-y-3 mb-6">
-                <h4 className="font-semibold text-slate-900">What&apos;s included:</h4>
+                <h4 className="font-semibold text-navy-800">What&apos;s included:</h4>
                 {[
                   "Everything in Job Search Sprint",
                   "Career narrative development",
@@ -274,7 +274,7 @@ export default function Services() {
                 ].map((item, i) => (
                   <div key={i} className="flex items-start">
                     <svg
-                      className="w-5 h-5 text-primary-500 mr-3 mt-0.5 flex-shrink-0"
+                      className="w-5 h-5 text-coral-500 mr-3 mt-0.5 flex-shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -286,11 +286,11 @@ export default function Services() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    <span className="text-slate-600">{item}</span>
+                    <span className="text-navy-500">{item}</span>
                   </div>
                 ))}
               </div>
-              <div className="text-sm text-slate-500 mb-4">
+              <div className="text-sm text-navy-400 mb-4">
                 Duration: 2 months (~10 hours total)
               </div>
               <CalendlyModal
@@ -306,57 +306,57 @@ export default function Services() {
       <section className="section-padding bg-white">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Add-On Services
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+              Add-ons
             </h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-navy-500 max-w-2xl mx-auto">
               Enhance any service with targeted support.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Job Postings Add-on */}
-            <div className="card border border-slate-200">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">
+            <div className="card border border-cream-300">
+              <h3 className="font-display text-xl font-bold text-navy-800 mb-2">
                 Targeted Job Postings
               </h3>
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-3xl font-bold text-slate-900">$75</span>
-                <span className="text-slate-500">CAD</span>
-                <span className="text-slate-400">|</span>
-                <span className="text-primary-600 font-medium">
+                <span className="text-3xl font-bold text-navy-800">$75</span>
+                <span className="text-navy-400">CAD</span>
+                <span className="text-cream-400">|</span>
+                <span className="text-coral-600 font-medium">
                   $35 student rate
                 </span>
               </div>
-              <p className="text-slate-600 mb-4">
+              <p className="text-navy-500 mb-4">
                 Receive curated job postings where you have the best chances of
                 landing an interview based on your profile.
               </p>
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-navy-400">
                 Can be added to any service except Intro Call.
               </p>
             </div>
 
             {/* Group Sessions */}
-            <div className="card border border-slate-200">
-              <h3 className="text-xl font-bold text-slate-900 mb-2">
+            <div className="card border border-cream-300">
+              <h3 className="font-display text-xl font-bold text-navy-800 mb-2">
                 Group Sessions
               </h3>
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-3xl font-bold text-slate-900">
+                <span className="text-3xl font-bold text-navy-800">
                   $100
                 </span>
-                <span className="text-slate-500">CAD/person</span>
-                <span className="text-slate-400">|</span>
-                <span className="text-primary-600 font-medium">
+                <span className="text-navy-400">CAD/person</span>
+                <span className="text-cream-400">|</span>
+                <span className="text-coral-600 font-medium">
                   $50 student rate
                 </span>
               </div>
-              <p className="text-slate-600 mb-4">
+              <p className="text-navy-500 mb-4">
                 60-90 minute group coaching sessions. Great for teams, cohorts,
                 or friends job searching together.
               </p>
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-navy-400">
                 Minimum 5 people, maximum 12 people.
               </p>
             </div>
@@ -365,17 +365,17 @@ export default function Services() {
       </section>
 
       {/* Pricing Table */}
-      <section className="section-padding bg-slate-50">
+      <section className="section-padding bg-cream-100">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Quick Pricing Reference
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+              All pricing at a glance
             </h2>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
-              <thead className="bg-slate-800 text-white">
+              <thead className="bg-navy-800 text-white">
                 <tr>
                   <th className="px-6 py-4 text-left font-semibold">Service</th>
                   <th className="px-6 py-4 text-center font-semibold">
@@ -389,7 +389,7 @@ export default function Services() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-200">
+              <tbody className="divide-y divide-cream-300">
                 {[
                   {
                     service: "Intro Call",
@@ -434,17 +434,17 @@ export default function Services() {
                     duration: "60-90 min",
                   },
                 ].map((row, i) => (
-                  <tr key={i} className="hover:bg-slate-50">
-                    <td className="px-6 py-4 font-medium text-slate-900">
+                  <tr key={i} className="hover:bg-cream-100">
+                    <td className="px-6 py-4 font-medium text-navy-800">
                       {row.service}
                     </td>
-                    <td className="px-6 py-4 text-center text-slate-600">
+                    <td className="px-6 py-4 text-center text-navy-500">
                       {row.regular}
                     </td>
-                    <td className="px-6 py-4 text-center text-primary-600 font-medium">
+                    <td className="px-6 py-4 text-center text-coral-600 font-medium">
                       {row.student}
                     </td>
-                    <td className="px-6 py-4 text-center text-slate-500">
+                    <td className="px-6 py-4 text-center text-navy-400">
                       {row.duration}
                     </td>
                   </tr>
@@ -453,7 +453,7 @@ export default function Services() {
             </table>
           </div>
 
-          <p className="text-center text-slate-500 mt-6">
+          <p className="text-center text-navy-400 mt-6">
             All prices in CAD. Student rates require valid student ID.
           </p>
         </div>
@@ -463,8 +463,8 @@ export default function Services() {
       <section className="section-padding bg-white">
         <div className="container-max">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
-              Frequently Asked Questions
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-800 mb-4">
+              Common questions
             </h2>
           </div>
 
@@ -492,10 +492,10 @@ export default function Services() {
               },
             ].map((faq, i) => (
               <div key={i} className="card">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                <h3 className="font-display text-lg font-semibold text-navy-800 mb-2">
                   {faq.q}
                 </h3>
-                <p className="text-slate-600">{faq.a}</p>
+                <p className="text-navy-500">{faq.a}</p>
               </div>
             ))}
           </div>
@@ -503,16 +503,15 @@ export default function Services() {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+      <section className="section-padding bg-navy-800 text-white">
         <div className="container-max text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Not Sure Where to Start?
+          <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
+            Not sure what you need?
           </h2>
-          <p className="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-            Book a free intro call and we&apos;ll figure out the best path forward
-            together.
+          <p className="text-xl text-cream-300 mb-8 max-w-2xl mx-auto">
+            Book a free call. No pitch, no pressure — just an honest conversation about where you want to go.
           </p>
-          <CalendlyModal className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-700 bg-white rounded-lg hover:bg-primary-50 transition-colors duration-200 shadow-lg" />
+          <CalendlyModal className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-navy-800 bg-white rounded-lg hover:bg-coral-50 transition-colors duration-200 shadow-lg" text="Let's Talk About Your Career" />
         </div>
       </section>
     </>

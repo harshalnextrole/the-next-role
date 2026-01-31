@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import CalendlyModal from "@/components/CalendlyModal";
+import Accordion from "@/components/Accordion";
 
 export const metadata: Metadata = {
   title: "Services & Pricing | The Next Role",
@@ -468,36 +469,31 @@ export default function Services() {
             </h2>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-6">
-            {[
-              {
-                q: "What qualifies me for the student rate?",
-                a: "Current students at any accredited institution (undergraduate, graduate, bootcamp, or co-op) qualify for student rates. Recent graduates (within 6 months of graduation) also qualify. Just provide a valid student ID or proof of recent graduation.",
-              },
-              {
-                q: "How do sessions work?",
-                a: "All sessions are conducted via video call (Google Meet or Zoom). You'll receive a calendar invite with the meeting link after booking. Sessions are recorded for your reference if you'd like.",
-              },
-              {
-                q: "What's your refund policy?",
-                a: "If you're not satisfied after the first session of any package, I'll refund the remaining sessions. Single sessions are non-refundable but can be rescheduled with 24 hours notice.",
-              },
-              {
-                q: "Can I switch between packages?",
-                a: "Yes! If you start with a single session and want to upgrade to a package, I'll credit your single session payment toward the package price.",
-              },
-              {
-                q: "Do you work with people outside Canada?",
-                a: "While my expertise is focused on the Canadian (especially GTA) market, I work with clients globally. For US or international markets, I can still help with resume strategy, interview prep, and general PM career guidance.",
-              },
-            ].map((faq, i) => (
-              <div key={i} className="card">
-                <h3 className="font-display text-lg font-semibold text-navy-800 mb-2">
-                  {faq.q}
-                </h3>
-                <p className="text-navy-500">{faq.a}</p>
-              </div>
-            ))}
+          <div className="max-w-3xl mx-auto">
+            <Accordion
+              items={[
+                {
+                  question: "What qualifies me for the student rate?",
+                  answer: "Current students at any accredited institution (undergraduate, graduate, bootcamp, or co-op) qualify for student rates. Recent graduates (within 6 months of graduation) also qualify. Just provide a valid student ID or proof of recent graduation.",
+                },
+                {
+                  question: "How do sessions work?",
+                  answer: "All sessions are conducted via video call (Google Meet or Zoom). You'll receive a calendar invite with the meeting link after booking. Sessions are recorded for your reference if you'd like.",
+                },
+                {
+                  question: "What's your refund policy?",
+                  answer: "If you're not satisfied after the first session of any package, I'll refund the remaining sessions. Single sessions are non-refundable but can be rescheduled with 24 hours notice.",
+                },
+                {
+                  question: "Can I switch between packages?",
+                  answer: "Yes! If you start with a single session and want to upgrade to a package, I'll credit your single session payment toward the package price.",
+                },
+                {
+                  question: "Do you work with people outside Canada?",
+                  answer: "While my expertise is focused on the Canadian (especially GTA) market, I work with clients globally. For US or international markets, I can still help with resume strategy, interview prep, and general PM career guidance.",
+                },
+              ]}
+            />
           </div>
         </div>
       </section>

@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CalendlyPreload from "@/components/CalendlyPreload";
+import FloatingCTA from "@/components/FloatingCTA";
 
 export const metadata: Metadata = {
   title: "The Next Role | PM Career Coaching",
@@ -53,6 +54,7 @@ export default function RootLayout({
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
+        <FloatingCTA />
       </body>
     </html>
   );

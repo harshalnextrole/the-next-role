@@ -10,6 +10,7 @@ export default function Header() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
+    { href: "/resume-analyzer", label: "Resume Analyzer", isNew: true },
     { href: "/about", label: "About" },
   ];
 
@@ -33,9 +34,14 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-navy-600 hover:text-coral-500 font-medium transition-colors"
+                className="text-navy-600 hover:text-coral-500 font-medium transition-colors flex items-center gap-1.5"
               >
                 {link.label}
+                {link.isNew && (
+                  <span className="px-1.5 py-0.5 text-[10px] font-bold bg-coral-500 text-white rounded-full leading-none">
+                    NEW
+                  </span>
+                )}
               </Link>
             ))}
             <CalendlyModal text="Let's Talk" />
@@ -80,10 +86,15 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-navy-600 hover:text-coral-500 font-medium transition-colors"
+                  className="text-navy-600 hover:text-coral-500 font-medium transition-colors flex items-center gap-1.5"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {link.label}
+                  {link.isNew && (
+                    <span className="px-1.5 py-0.5 text-[10px] font-bold bg-coral-500 text-white rounded-full leading-none">
+                      NEW
+                    </span>
+                  )}
                 </Link>
               ))}
               <CalendlyModal

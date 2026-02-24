@@ -2,8 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { extractText } from "unpdf";
 
 export async function POST(req: NextRequest) {
+  let formData;
   try {
-    const formData = await req.formData();
+    formData = await req.formData();
+  } catch {
+    return NextResponse.json({ error: "No file provided" }, { status: 400 });
+  }
+
+  try {
     const file = formData.get("file") as File | null;
 
     if (!file) {

@@ -73,6 +73,26 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate input lengths
+    if (String(name).length > 100) {
+      return NextResponse.json(
+        { error: 'Name must be 100 characters or less' },
+        { status: 400 }
+      );
+    }
+    if (String(role).length > 100) {
+      return NextResponse.json(
+        { error: 'Role must be 100 characters or less' },
+        { status: 400 }
+      );
+    }
+    if (String(quote).length > 1000) {
+      return NextResponse.json(
+        { error: 'Testimonial must be 1000 characters or less' },
+        { status: 400 }
+      );
+    }
+
     // Create new testimonial
     const newTestimonial: Testimonial = {
       id: Date.now().toString(),

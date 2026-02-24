@@ -26,9 +26,6 @@ const PRODUCTS: Record<string, { name: string; price: number; description: strin
 
 export async function POST(req: NextRequest) {
   const stripeKey = process.env.STRIPE_SECRET_KEY;
-  if (!stripeKey) {
-    return NextResponse.json({ error: "Stripe not configured" }, { status: 500 });
-  }
 
   try {
     const { productId, successUrl, cancelUrl } = await req.json();
@@ -36,6 +33,12 @@ export async function POST(req: NextRequest) {
 
     if (!product) {
       return NextResponse.json({ error: "Invalid product" }, { status: 400 });
+    }
+
+    // Demo mode: If Stripe isn't configured, grant access automatically
+    if (!stripeKey || stripeKey === 'your-stripe-secret-key-here') {
+      const demoSuccessUrl = successUrl || `${req.nextUrl.origin}/resume-analyzer?purchased=${productId}`;
+      return NextResponse.json({ url: demoSuccessUrl });
     }
 
     const stripe = new Stripe(stripeKey);

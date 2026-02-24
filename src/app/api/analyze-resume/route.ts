@@ -66,10 +66,24 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Validate input lengths (prevent abuse)
+    if (String(resume).length > 50000) {
+      return NextResponse.json(
+        { error: "Resume text is too long. Please limit to 50,000 characters." },
+        { status: 400 }
+      );
+    }
+    if (String(jobDescription).length > 20000) {
+      return NextResponse.json(
+        { error: "Job description is too long. Please limit to 20,000 characters." },
+        { status: 400 }
+      );
+    }
+
     const client = new Anthropic({ apiKey });
 
     const message = await client.messages.create({
-      model: "claude-3-haiku-20240307",
+      model: "claude-haiku-4-5-20251001",
       max_tokens: 4096,
       temperature: 0,
       system: SYSTEM_PROMPT,

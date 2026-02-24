@@ -75,6 +75,26 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate input lengths
+    if (String(name).length > 100) {
+      return NextResponse.json(
+        { error: 'Name must be 100 characters or less' },
+        { status: 400 }
+      );
+    }
+    if (String(subject).length > 200) {
+      return NextResponse.json(
+        { error: 'Subject must be 200 characters or less' },
+        { status: 400 }
+      );
+    }
+    if (String(message).length > 5000) {
+      return NextResponse.json(
+        { error: 'Message must be 5000 characters or less' },
+        { status: 400 }
+      );
+    }
+
     // Create new inquiry
     const newInquiry: Inquiry = {
       id: Date.now().toString(),

@@ -11,7 +11,9 @@ export default function Header() {
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/resume-analyzer", label: "Resume Analyzer", isNew: true },
+    { href: "/blog", label: "Blog" },
     { href: "/about", label: "About" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (

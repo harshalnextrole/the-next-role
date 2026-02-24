@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { notifyNewTestimonial } from '@/lib/email';
 
 interface Testimonial {
   id: string;
@@ -86,6 +87,9 @@ export async function POST(request: NextRequest) {
     const pending = readJsonFile(PENDING_FILE);
     pending.push(newTestimonial);
     writeJsonFile(PENDING_FILE, pending);
+
+    // Send email notification
+    await notifyNewTestimonial(newTestimonial);
 
     return NextResponse.json(
       { message: 'Thank you! Your testimonial has been submitted for review.' },

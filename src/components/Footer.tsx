@@ -43,10 +43,34 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/blog"
+                  className="hover:text-coral-400 transition-colors"
+                >
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/about"
                   className="hover:text-coral-400 transition-colors"
                 >
                   About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="hover:text-coral-400 transition-colors"
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/portal"
+                  className="hover:text-coral-400 transition-colors"
+                >
+                  Client Portal
                 </Link>
               </li>
             </ul>

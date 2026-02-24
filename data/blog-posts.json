@@ -1,0 +1,38 @@
+[
+  {
+    "id": "getting-started-pm-career",
+    "slug": "getting-started-pm-career",
+    "title": "How to Break Into Product Management in 2026",
+    "excerpt": "A comprehensive guide for career switchers looking to land their first PM role, based on my experience going from 70 applications to 3 offers.",
+    "content": "Breaking into product management can feel overwhelming, but with the right strategy, it's absolutely achievable. Here's what I learned from my own job search journey.\n\n## Start With Your Story\n\nThe biggest mistake career switchers make is trying to hide their background. Instead, lean into it. Your unique perspective is your superpower.\n\nIf you're coming from engineering, you understand the technical constraints. From design? You know user research. From consulting? You've got the strategic thinking down.\n\n## Build Your PM Toolkit\n\nBefore you start applying, make sure you can speak to:\n\n1. **Product sense** - How do you evaluate what to build?\n2. **Execution** - How do you ship products?\n3. **Leadership** - How do you influence without authority?\n4. **Technical skills** - Can you work with engineers?\n\n## The Application Strategy That Worked\n\nI applied to 70 companies and got 3 offers. Here's what made the difference:\n\n- **Targeted applications** over spray-and-pray\n- **Custom cover letters** that showed I researched the company\n- **Portfolio projects** that demonstrated PM thinking\n- **Networking** that got me referrals\n\n## Final Thoughts\n\nThe PM job market is competitive, but it's not impossible. Focus on building real skills, telling your story well, and being strategic about where you apply.\n\nNeed help with your PM job search? [Book a session](/services) and let's work on this together.",
+    "author": "Harshal Gautam",
+    "publishedAt": "2026-01-15",
+    "tags": ["career-switch", "pm-basics", "job-search"],
+    "readTime": 5,
+    "featured": true
+  },
+  {
+    "id": "resume-mistakes-pm",
+    "slug": "resume-mistakes-pm",
+    "title": "5 Resume Mistakes That Kill Your PM Applications",
+    "excerpt": "After reviewing hundreds of PM resumes, these are the most common mistakes I see—and how to fix them.",
+    "content": "Your resume is your first impression. Make it count.\n\n## Mistake #1: Leading With Responsibilities, Not Impact\n\n**Wrong:** \"Responsible for product roadmap and feature prioritization\"\n\n**Right:** \"Drove 40% increase in user engagement by prioritizing features based on customer research and data analysis\"\n\nAlways lead with the impact. Numbers speak louder than job descriptions.\n\n## Mistake #2: No Product Metrics\n\nPMs are measured by outcomes. Your resume should reflect that:\n\n- Revenue impact\n- User growth\n- Engagement metrics\n- Efficiency gains\n\nIf you don't have metrics, estimate conservatively and be ready to explain.\n\n## Mistake #3: Too Much Jargon\n\nAgile, Scrum, stakeholder management—these are table stakes. Don't waste resume space on them.\n\nInstead, show what you actually DID with those methodologies.\n\n## Mistake #4: One-Size-Fits-All\n\nYour resume should be tailored to each role:\n\n- B2B role? Highlight enterprise experience\n- Consumer app? Show growth and engagement\n- AI product? Emphasize technical depth\n\n## Mistake #5: Ignoring the ATS\n\nApplicant Tracking Systems filter resumes before humans see them:\n\n- Use standard section headers\n- Include keywords from the job description\n- Avoid tables and complex formatting\n\n## Ready to Level Up Your Resume?\n\nTry our free [Resume Analyzer](/resume-analyzer) to get instant feedback, or [book a session](/services) for a personalized review.",
+    "author": "Harshal Gautam",
+    "publishedAt": "2026-01-22",
+    "tags": ["resume", "job-search", "tips"],
+    "readTime": 4,
+    "featured": false
+  },
+  {
+    "id": "mock-interview-tips",
+    "slug": "mock-interview-tips",
+    "title": "How to Ace Your PM Interview: Lessons from 25 Interviews",
+    "excerpt": "What I learned from 25 PM interviews that helped me land offers at top tech companies.",
+    "content": "After going through 25 interviews in my recent job search, I've learned what separates good candidates from great ones.\n\n## The STAR Method Is Just the Beginning\n\nYes, use STAR (Situation, Task, Action, Result) to structure your answers. But the best candidates go further:\n\n- **Situation**: Set context in 1-2 sentences\n- **Task**: What was YOUR specific role?\n- **Action**: What did YOU do (not the team)?\n- **Result**: Quantify the impact\n- **Learnings**: What would you do differently?\n\nThat last part—learnings—shows self-awareness and growth mindset.\n\n## Product Sense Questions\n\nWhen asked to design a product or improve an existing one:\n\n1. **Clarify** - Ask questions about users, goals, constraints\n2. **Structure** - Use a framework (I like: Users → Problems → Solutions → Prioritize)\n3. **Think aloud** - Share your reasoning\n4. **Be opinionated** - Take a stance and defend it\n\n## The Questions You Ask Matter\n\nYour questions reveal how you think. Ask about:\n\n- Team structure and collaboration\n- How success is measured\n- Biggest challenges facing the product\n- Decision-making process\n\nAvoid questions you could answer by reading the website.\n\n## Practice Makes Perfect\n\nI did 15+ mock interviews before my real ones. The repetition builds muscle memory.\n\nWant to practice? [Book a mock interview session](/services) with me.",
+    "author": "Harshal Gautam",
+    "publishedAt": "2026-02-01",
+    "tags": ["interviews", "preparation", "tips"],
+    "readTime": 6,
+    "featured": true
+  }
+]

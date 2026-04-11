@@ -1,0 +1,18 @@
+{
+  "name": "flight-price-monitor",
+  "version": "1.0.0",
+  "description": "Monitors business class flight prices YYZ→DEL and alerts on price drops",
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "amadeus": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

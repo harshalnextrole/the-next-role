@@ -1,0 +1,41 @@
+name: Check Flight Prices
+
+on:
+  schedule:
+    # Run every 8 hours (3x/day)
+    - cron: '0 */8 * * *'
+  workflow_dispatch: {} # Allow manual triggers
+
+jobs:
+  check-prices:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to commit price data back
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run flight price check
+        run: npx tsx src/index.ts
+        env:
+          AMADEUS_CLIENT_ID: ${{ secrets.AMADEUS_CLIENT_ID }}
+          AMADEUS_CLIENT_SECRET: ${{ secrets.AMADEUS_CLIENT_SECRET }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+
+      - name: Commit updated price data
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: update flight price data'
+          file_pattern: 'data/*.json'

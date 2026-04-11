@@ -1,10 +1,46 @@
 import { generateDatePairs } from './utils/dates.js';
 import { searchFlights, delay } from './api/serpapi.js';
 import { findCheapestAcceptable, extractRoute, getAirline, getMaxLayover } from './filters/flight-filter.js';
-import { appendPriceHistory, getPreviousLowest, updateLowestPrice, readSearchState, updateSearchState } from './storage/price-store.js';
+import {
+  appendPriceHistory,
+  getPreviousLowest,
+  updateLowestPrice,
+  readSearchState,
+  updateSearchState,
+  getHistoricalStats,
+} from './storage/price-store.js';
 import { sendPriceDropAlert } from './notifications/email.js';
 import { CONFIG } from './config.js';
-import type { PriceRecord, PriceDropAlert } from './types/index.js';
+import type { PriceRecord, PriceDropAlert, DealTier } from './types/index.js';
+
+/**
+ * Classify a price into a deal tier.
+ * Exceptional < $2,500 CAD | Good < $3,500 CAD | Regular drop otherwise
+ */
+function getDealTier(price: number): DealTier {
+  if (price <= CONFIG.EXCEPTIONAL_DEAL_CAD) return 'exceptional';
+  if (price <= CONFIG.GOOD_DEAL_CAD) return 'good';
+  return null;
+}
+
+/**
+ * Decide whether to send an alert.
+ * Fires when:
+ *   1. Price is a new historical low for this departure date, OR
+ *   2. Price crosses into a deal tier the previous low wasn't in
+ *      (e.g. was $3,800 → now $3,400 = enters "good deal" zone)
+ */
+function shouldSendAlert(price: number, previousLowest: number | null): boolean {
+  if (previousLowest === null) return true; // First observation
+  if (price < previousLowest) return true;  // New low
+
+  // Check if we've crossed into a better deal tier
+  const currentTier = getDealTier(price);
+  const previousTier = getDealTier(previousLowest);
+  if (currentTier !== null && currentTier !== previousTier) return true;
+
+  return false;
+}
 
 /**
  * Select the next batch of dates to check.
@@ -19,13 +55,12 @@ function getNextBatch(allDates: ReturnType<typeof generateDatePairs>): ReturnTyp
   const end = Math.min(start + CONFIG.DATES_PER_RUN, allDates.length);
   const batch = allDates.slice(start, end);
 
-  // Save state
   updateSearchState({
     lastBatchIndex: nextIndex,
     lastRunDate: new Date().toISOString(),
   });
 
-  console.log(`Batch ${nextIndex + 1}/${totalBatches} (dates ${start + 1}-${end} of ${allDates.length})\n`);
+  console.log(`Batch ${nextIndex + 1}/${totalBatches} (dates ${start + 1}–${end} of ${allDates.length})\n`);
   return batch;
 }
 
@@ -34,13 +69,13 @@ async function main(): Promise<void> {
   console.log(`Route: ${CONFIG.ORIGIN} → ${CONFIG.DESTINATION} (Business Class)`);
   console.log(`Window: ${CONFIG.SEARCH_START} to ${CONFIG.SEARCH_END_DEPARTURE}`);
   console.log(`Trip: ${CONFIG.TRIP_DURATION_DAYS} days | Max travel: ${CONFIG.MAX_TRAVEL_TIME_MINUTES / 60}h`);
-  console.log(`Filters: ≤${CONFIG.MAX_STOPS} stop(s), ≤${CONFIG.MAX_LAYOVER_MINUTES / 60}h layover`);
+  console.log(`Thresholds: Good deal <$${CONFIG.GOOD_DEAL_CAD} | Exceptional <$${CONFIG.EXCEPTIONAL_DEAL_CAD}`);
   console.log('');
 
   const allDatePairs = generateDatePairs();
   const datePairs = getNextBatch(allDatePairs);
 
-  let priceDrops = 0;
+  let alerts = 0;
   let totalSearches = 0;
   let noResults = 0;
 
@@ -74,10 +109,14 @@ async function main(): Promise<void> {
     const route = extractRoute(cheapest);
     const stops = cheapest.flights.length - 1;
     const maxLayover = getMaxLayover(cheapest);
+    const dealTier = getDealTier(price);
+    const tierLabel = dealTier === 'exceptional' ? ' *** EXCEPTIONAL DEAL ***'
+      : dealTier === 'good' ? ' ** GOOD DEAL **'
+      : '';
 
-    console.log(`  Cheapest: $${price} ${CONFIG.CURRENCY} | ${airline} | ${route} | ${stops} stop(s)`);
+    console.log(`  Cheapest: $${price} ${CONFIG.CURRENCY} | ${airline} | ${route} | ${stops} stop(s)${tierLabel}`);
 
-    // Build the price record
+    // Save to history
     const record: PriceRecord = {
       id: Date.now().toString(),
       departureDate: pair.departure,
@@ -91,20 +130,17 @@ async function main(): Promise<void> {
       maxLayoverMinutes: maxLayover,
       checkedAt: new Date().toISOString(),
     };
-
-    // Save to history
     appendPriceHistory(record);
 
-    // Check for price drop
     const previousLowest = getPreviousLowest(pair.departure);
+    const historicalStats = getHistoricalStats(pair.departure);
 
-    if (previousLowest === null || price < previousLowest) {
+    if (shouldSendAlert(price, previousLowest)) {
       const dropText = previousLowest
-        ? `PRICE DROP: $${previousLowest} → $${price} (-$${previousLowest - price})`
-        : `NEW LOWEST: $${price} (first observation)`;
-      console.log(`  ${dropText}`);
+        ? `${previousLowest} → $${price} (-$${previousLowest - price})`
+        : `first observation`;
+      console.log(`  ALERT: $${dropText}`);
 
-      // Update lowest price
       updateLowestPrice(pair.departure, {
         lowestPrice: price,
         currency: CONFIG.CURRENCY,
@@ -115,7 +151,6 @@ async function main(): Promise<void> {
         lastUpdated: new Date().toISOString(),
       });
 
-      // Send notification
       const alert: PriceDropAlert = {
         departureDate: pair.departure,
         returnDate: pair.return,
@@ -127,10 +162,12 @@ async function main(): Promise<void> {
         totalDuration: cheapest.total_duration,
         stops,
         maxLayoverMinutes: maxLayover,
+        dealTier,
+        historicalStats,
       };
 
       await sendPriceDropAlert(alert);
-      priceDrops++;
+      alerts++;
     } else {
       console.log(`  No change (lowest: $${previousLowest})`);
     }
@@ -139,9 +176,7 @@ async function main(): Promise<void> {
   }
 
   console.log('\n=== Summary ===');
-  console.log(`Searches: ${totalSearches}`);
-  console.log(`No results: ${noResults}`);
-  console.log(`Price drops/new lows: ${priceDrops}`);
+  console.log(`Searches: ${totalSearches} | No results: ${noResults} | Alerts sent: ${alerts}`);
   console.log(`Completed at: ${new Date().toISOString()}`);
 }
 

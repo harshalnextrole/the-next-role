@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import type { PriceRecord, LowestPricesMap, SearchState } from '../types/index.js';
+import type { PriceRecord, LowestPricesMap, SearchState, HistoricalStats } from '../types/index.js';
 
 const DATA_DIR = path.resolve(process.cwd(), 'data');
 const HISTORY_FILE = path.join(DATA_DIR, 'price-history.json');
@@ -58,14 +58,27 @@ export function updateLowestPrice(
   fs.writeFileSync(LOWEST_FILE, JSON.stringify(map, null, 2), 'utf-8');
 }
 
-/**
- * Check if a new price is lower than the stored lowest.
- * Returns the previous lowest price, or null if no previous record exists.
- */
+/** Get previous lowest price for a date, or null if never seen */
 export function getPreviousLowest(departureDate: string): number | null {
   const map = readLowestPrices();
   const entry = map[departureDate];
   return entry ? entry.lowestPrice : null;
+}
+
+/**
+ * Get historical price stats for a departure date.
+ * Returns avg, min, and observation count. Null if fewer than 2 observations.
+ */
+export function getHistoricalStats(departureDate: string): HistoricalStats | null {
+  const history = readPriceHistory();
+  const records = history.filter((r) => r.departureDate === departureDate);
+  if (records.length < 2) return null;
+
+  const prices = records.map((r) => r.price);
+  const avg = Math.round(prices.reduce((a, b) => a + b, 0) / prices.length);
+  const min = Math.min(...prices);
+
+  return { avg, min, observations: records.length };
 }
 
 /** Read the search state (batch rotation tracker) */

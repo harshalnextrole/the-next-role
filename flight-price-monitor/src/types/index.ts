@@ -8,7 +8,7 @@ export interface DatePair {
 export interface SerpApiAirport {
   name: string;
   id: string;
-  time: string; // e.g. "2026-10-01 10:00"
+  time: string;
 }
 
 /** A single flight segment from SerpAPI */
@@ -87,6 +87,16 @@ export interface SearchState {
   lastRunDate: string;
 }
 
+/** Deal tier for a given price */
+export type DealTier = 'exceptional' | 'good' | 'drop' | null;
+
+/** Historical price stats for a route/date */
+export interface HistoricalStats {
+  avg: number;
+  min: number;
+  observations: number;
+}
+
 /** Email notification payload */
 export interface PriceDropAlert {
   departureDate: string;
@@ -99,4 +109,6 @@ export interface PriceDropAlert {
   totalDuration: number; // minutes
   stops: number;
   maxLayoverMinutes: number;
+  dealTier: DealTier;
+  historicalStats: HistoricalStats | null;
 }

@@ -31,7 +31,7 @@ export interface SerpApiLayover {
 /** A complete flight result from SerpAPI Google Flights */
 export interface SerpApiFlightResult {
   flights: SerpApiFlight[];
-  layovers: SerpApiLayover[];
+  layovers?: SerpApiLayover[];
   total_duration: number; // minutes
   price: number;
   type: string;

@@ -11,8 +11,8 @@ function isFlightAcceptable(result: SerpApiFlightResult): boolean {
   // Check total travel time
   if (result.total_duration > CONFIG.MAX_TRAVEL_TIME_MINUTES) return false;
 
-  // Check layover durations
-  for (const layover of result.layovers) {
+  // Check layover durations (layovers may be undefined for direct flights)
+  for (const layover of (result.layovers ?? [])) {
     if (layover.duration > CONFIG.MAX_LAYOVER_MINUTES) return false;
   }
 
@@ -65,6 +65,6 @@ export function getAirline(result: SerpApiFlightResult): string {
  * Get the maximum layover in minutes across all connections.
  */
 export function getMaxLayover(result: SerpApiFlightResult): number {
-  if (result.layovers.length === 0) return 0;
+  if (!result.layovers || result.layovers.length === 0) return 0;
   return Math.max(...result.layovers.map((l) => l.duration));
 }

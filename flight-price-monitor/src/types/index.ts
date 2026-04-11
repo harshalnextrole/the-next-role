@@ -4,40 +4,50 @@ export interface DatePair {
   return: string;    // YYYY-MM-DD
 }
 
-/** A single flight segment (one takeoff-to-landing) */
-export interface FlightSegment {
-  departure: {
-    iataCode: string;
-    terminal?: string;
-    at: string; // ISO 8601
-  };
-  arrival: {
-    iataCode: string;
-    terminal?: string;
-    at: string; // ISO 8601
-  };
-  carrierCode: string;
-  number: string;
-  duration: string; // ISO 8601 duration e.g. PT8H30M
-  numberOfStops: number;
-}
-
-/** An itinerary (one direction: outbound or return) */
-export interface FlightItinerary {
-  duration: string; // ISO 8601 total duration e.g. PT14H30M
-  segments: FlightSegment[];
-}
-
-/** A complete flight offer from Amadeus */
-export interface FlightOffer {
+/** Airport info from SerpAPI */
+export interface SerpApiAirport {
+  name: string;
   id: string;
-  price: {
-    currency: string;
-    total: string;   // e.g. "4250.00"
-    grandTotal: string;
+  time: string; // e.g. "2026-10-01 10:00"
+}
+
+/** A single flight segment from SerpAPI */
+export interface SerpApiFlight {
+  departure_airport: SerpApiAirport;
+  arrival_airport: SerpApiAirport;
+  duration: number; // minutes
+  airline: string;
+  airline_logo: string;
+  flight_number: string;
+}
+
+/** Layover info from SerpAPI */
+export interface SerpApiLayover {
+  duration: number; // minutes
+  name: string;
+  id: string;
+}
+
+/** A complete flight result from SerpAPI Google Flights */
+export interface SerpApiFlightResult {
+  flights: SerpApiFlight[];
+  layovers: SerpApiLayover[];
+  total_duration: number; // minutes
+  price: number;
+  type: string;
+  airline_logo: string;
+  departure_token?: string;
+}
+
+/** SerpAPI response structure */
+export interface SerpApiResponse {
+  best_flights?: SerpApiFlightResult[];
+  other_flights?: SerpApiFlightResult[];
+  search_metadata: {
+    status: string;
+    id: string;
   };
-  itineraries: FlightItinerary[];
-  validatingAirlineCodes: string[];
+  error?: string;
 }
 
 /** A price observation we store */
@@ -49,8 +59,7 @@ export interface PriceRecord {
   currency: string;
   airline: string;
   route: string;
-  outboundDuration: string;
-  returnDuration: string;
+  totalDuration: number; // minutes (outbound)
   stops: number;
   maxLayoverMinutes: number;
   checkedAt: string; // ISO 8601
@@ -62,8 +71,7 @@ export interface LowestPriceEntry {
   currency: string;
   airline: string;
   route: string;
-  outboundDuration: string;
-  returnDuration: string;
+  totalDuration: number;
   stops: number;
   lastUpdated: string;
 }
@@ -71,6 +79,12 @@ export interface LowestPriceEntry {
 /** Map of departure date -> lowest price entry */
 export interface LowestPricesMap {
   [departureDate: string]: LowestPriceEntry;
+}
+
+/** Batch rotation state */
+export interface SearchState {
+  lastBatchIndex: number;
+  lastRunDate: string;
 }
 
 /** Email notification payload */
@@ -82,8 +96,7 @@ export interface PriceDropAlert {
   currency: string;
   airline: string;
   route: string;
-  outboundDuration: string;
-  returnDuration: string;
+  totalDuration: number; // minutes
   stops: number;
   maxLayoverMinutes: number;
 }

@@ -2,8 +2,8 @@ name: Check Flight Prices
 
 on:
   schedule:
-    # Run every 8 hours (3x/day)
-    - cron: '0 */8 * * *'
+    # Run once per day at 8am UTC
+    - cron: '0 8 * * *'
   workflow_dispatch: {} # Allow manual triggers
 
 jobs:
@@ -28,8 +28,7 @@ jobs:
       - name: Run flight price check
         run: npx tsx src/index.ts
         env:
-          AMADEUS_CLIENT_ID: ${{ secrets.AMADEUS_CLIENT_ID }}
-          AMADEUS_CLIENT_SECRET: ${{ secrets.AMADEUS_CLIENT_SECRET }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}

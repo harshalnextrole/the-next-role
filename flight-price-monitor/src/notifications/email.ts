@@ -1,4 +1,4 @@
-import { formatDuration, parseDurationMinutes } from '../utils/duration.js';
+import { formatDuration } from '../utils/duration.js';
 import type { PriceDropAlert } from '../types/index.js';
 
 /**
@@ -52,12 +52,8 @@ export async function sendPriceDropAlert(alert: PriceDropAlert): Promise<boolean
           <td style="padding: 8px 0;">${formatDatePretty(alert.returnDate)}</td>
         </tr>
         <tr style="border-bottom: 1px solid #eee;">
-          <td style="padding: 8px 0; color: #888;">Outbound</td>
-          <td style="padding: 8px 0;">${formatDuration(parseDurationMinutes(alert.outboundDuration))}, ${alert.stops} stop(s)</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #eee;">
-          <td style="padding: 8px 0; color: #888;">Return flight</td>
-          <td style="padding: 8px 0;">${formatDuration(parseDurationMinutes(alert.returnDuration))}</td>
+          <td style="padding: 8px 0; color: #888;">Travel time</td>
+          <td style="padding: 8px 0;">${formatDuration(alert.totalDuration)}, ${alert.stops} stop(s)</td>
         </tr>
         <tr>
           <td style="padding: 8px 0; color: #888;">Max layover</td>
@@ -132,4 +128,3 @@ function formatDatePretty(dateStr: string): string {
     timeZone: 'UTC',
   });
 }
-

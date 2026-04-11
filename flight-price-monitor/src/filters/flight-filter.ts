@@ -1,79 +1,70 @@
 import { CONFIG } from '../config.js';
-import { parseDurationMinutes, computeLayoverMinutes } from '../utils/duration.js';
-import type { FlightOffer, FlightItinerary } from '../types/index.js';
+import type { SerpApiFlightResult, SerpApiResponse } from '../types/index.js';
 
 /**
- * Check if a single itinerary (one direction) meets our criteria:
- * - Max stops (segments - 1)
- * - Max total travel time
- * - Max layover duration at connecting airports
+ * Check if a flight result meets our criteria:
+ * - Max total travel time (outbound)
+ * - Max layover duration
+ * Note: stops are already filtered by SerpAPI (stops=2 = up to 1 stop)
  */
-function isItineraryAcceptable(itinerary: FlightItinerary): boolean {
-  // Check number of stops (segments count - 1 = stops)
-  const stops = itinerary.segments.length - 1;
-  if (stops > CONFIG.MAX_STOPS) return false;
-
+function isFlightAcceptable(result: SerpApiFlightResult): boolean {
   // Check total travel time
-  const totalMinutes = parseDurationMinutes(itinerary.duration);
-  if (totalMinutes > CONFIG.MAX_TRAVEL_TIME_MINUTES) return false;
+  if (result.total_duration > CONFIG.MAX_TRAVEL_TIME_MINUTES) return false;
 
-  // Check layover durations for connecting flights
-  for (let i = 0; i < itinerary.segments.length - 1; i++) {
-    const layover = computeLayoverMinutes(
-      itinerary.segments[i].arrival.at,
-      itinerary.segments[i + 1].departure.at
-    );
-    if (layover > CONFIG.MAX_LAYOVER_MINUTES) return false;
+  // Check layover durations
+  for (const layover of result.layovers) {
+    if (layover.duration > CONFIG.MAX_LAYOVER_MINUTES) return false;
   }
 
   return true;
 }
 
 /**
- * Filter a flight offer — both outbound and return itineraries must be acceptable.
+ * Get all flight results from a SerpAPI response (best + other flights).
  */
-export function isOfferAcceptable(offer: FlightOffer): boolean {
-  return offer.itineraries.every(isItineraryAcceptable);
+function getAllFlights(response: SerpApiResponse): SerpApiFlightResult[] {
+  const flights: SerpApiFlightResult[] = [];
+  if (response.best_flights) flights.push(...response.best_flights);
+  if (response.other_flights) flights.push(...response.other_flights);
+  return flights;
 }
 
 /**
- * Filter and sort offers, returning the cheapest acceptable one (or null).
+ * Filter and sort results, returning the cheapest acceptable one (or null).
  */
-export function findCheapestAcceptable(offers: FlightOffer[]): FlightOffer | null {
-  const acceptable = offers.filter(isOfferAcceptable);
+export function findCheapestAcceptable(response: SerpApiResponse): SerpApiFlightResult | null {
+  const allFlights = getAllFlights(response);
+  const acceptable = allFlights.filter(isFlightAcceptable);
 
   if (acceptable.length === 0) return null;
 
-  acceptable.sort(
-    (a, b) => parseFloat(a.price.total) - parseFloat(b.price.total)
-  );
-
+  acceptable.sort((a, b) => a.price - b.price);
   return acceptable[0];
 }
 
 /**
- * Extract a human-readable route string from an itinerary.
+ * Extract a human-readable route string from a flight result.
  * E.g. "YYZ-FCO-DEL" for a 1-stop via Rome.
  */
-export function extractRoute(itinerary: FlightItinerary): string {
-  const codes = [itinerary.segments[0].departure.iataCode];
-  for (const segment of itinerary.segments) {
-    codes.push(segment.arrival.iataCode);
+export function extractRoute(result: SerpApiFlightResult): string {
+  const codes = [result.flights[0].departure_airport.id];
+  for (const flight of result.flights) {
+    codes.push(flight.arrival_airport.id);
   }
   return codes.join('-');
 }
 
 /**
- * Get the maximum layover in minutes across all connections in an itinerary.
+ * Get the primary airline name from a flight result.
  */
-export function getMaxLayover(itinerary: FlightItinerary): number {
-  let maxLayover = 0;
-  for (let i = 0; i < itinerary.segments.length - 1; i++) {
-    const layover = computeLayoverMinutes(
-      itinerary.segments[i].arrival.at,
-      itinerary.segments[i + 1].departure.at
-    );
-    maxLayover = Math.max(maxLayover, layover);
-  }
-  return maxLayover;
+export function getAirline(result: SerpApiFlightResult): string {
+  return result.flights[0]?.airline || 'Unknown';
+}
+
+/**
+ * Get the maximum layover in minutes across all connections.
+ */
+export function getMaxLayover(result: SerpApiFlightResult): number {
+  if (result.layovers.length === 0) return 0;
+  return Math.max(...result.layovers.map((l) => l.duration));
 }

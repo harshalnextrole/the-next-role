@@ -30,9 +30,9 @@ export const CONFIG = {
   /** Currency for price results */
   CURRENCY: 'CAD',
 
-  /** Max flight offers to request per search (Amadeus returns up to 250) */
-  MAX_RESULTS_PER_SEARCH: 50,
+  /** Number of dates to check per run (to stay within free tier) */
+  DATES_PER_RUN: 3,
 
   /** Delay between API calls in ms (respect rate limits) */
-  API_DELAY_MS: 1100,
+  API_DELAY_MS: 2000,
 } as const;

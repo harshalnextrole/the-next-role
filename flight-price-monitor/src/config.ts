@@ -27,8 +27,8 @@ export const CONFIG = {
   /** Maximum number of stops per direction */
   MAX_STOPS: 1,
 
-  /** Maximum layover duration in minutes (6 hours) */
-  MAX_LAYOVER_MINUTES: 6 * 60,
+  /** Maximum layover duration in minutes (8 hours) */
+  MAX_LAYOVER_MINUTES: 8 * 60,
 
   /** Currency for price results */
   CURRENCY: 'CAD',

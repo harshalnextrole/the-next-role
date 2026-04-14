@@ -97,6 +97,16 @@ export interface HistoricalStats {
   observations: number;
 }
 
+/** Alternative flight option (for showing top 3 options in email) */
+export interface FlightOption {
+  airline: string;
+  route: string;
+  price: number;
+  totalDuration: number;
+  stops: number;
+  maxLayoverMinutes: number;
+}
+
 /** Email notification payload */
 export interface PriceDropAlert {
   departureDate: string;
@@ -111,4 +121,8 @@ export interface PriceDropAlert {
   maxLayoverMinutes: number;
   dealTier: DealTier;
   historicalStats: HistoricalStats | null;
+  /** Is this the very first time we're seeing this date? */
+  isFirstObservation: boolean;
+  /** Top cheapest options from different airlines (includes the primary) */
+  alternatives: FlightOption[];
 }

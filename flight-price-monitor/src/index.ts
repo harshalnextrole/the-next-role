@@ -1,6 +1,13 @@
 import { generateDatePairs } from './utils/dates.js';
 import { searchFlights, delay } from './api/serpapi.js';
-import { findCheapestAcceptable, extractRoute, getAirline, getMaxLayover } from './filters/flight-filter.js';
+import {
+  findCheapestAcceptable,
+  findTopCheapestByAirline,
+  getAllAcceptable,
+  extractRoute,
+  getAirline,
+  getMaxLayover,
+} from './filters/flight-filter.js';
 import {
   appendPriceHistory,
   getPreviousLowest,
@@ -11,7 +18,7 @@ import {
 } from './storage/price-store.js';
 import { sendPriceDropAlert } from './notifications/email.js';
 import { CONFIG } from './config.js';
-import type { PriceRecord, PriceDropAlert, DealTier } from './types/index.js';
+import type { PriceRecord, PriceDropAlert, DealTier, FlightOption } from './types/index.js';
 
 /**
  * Classify a price into a deal tier.
@@ -104,6 +111,22 @@ async function main(): Promise<void> {
       continue;
     }
 
+    // Log diagnostics: all airlines observed and their cheapest price
+    const allAcceptable = getAllAcceptable(response);
+    const airlineSummary = new Map<string, number>();
+    for (const f of allAcceptable) {
+      const a = getAirline(f);
+      if (!airlineSummary.has(a) || airlineSummary.get(a)! > f.price) {
+        airlineSummary.set(a, f.price);
+      }
+    }
+    console.log(`  Airlines seen (cheapest each): ${
+      Array.from(airlineSummary.entries())
+        .sort((a, b) => a[1] - b[1])
+        .map(([a, p]) => `${a} $${p}`)
+        .join(', ')
+    }`);
+
     const price = cheapest.price;
     const airline = getAirline(cheapest);
     const route = extractRoute(cheapest);
@@ -115,6 +138,17 @@ async function main(): Promise<void> {
       : '';
 
     console.log(`  Cheapest: $${price} ${CONFIG.CURRENCY} | ${airline} | ${route} | ${stops} stop(s)${tierLabel}`);
+
+    // Build top 3 alternatives (different airlines) for the email
+    const topOptions = findTopCheapestByAirline(response, 3);
+    const alternatives: FlightOption[] = topOptions.map((f) => ({
+      airline: getAirline(f),
+      route: extractRoute(f),
+      price: f.price,
+      totalDuration: f.total_duration,
+      stops: f.flights.length - 1,
+      maxLayoverMinutes: getMaxLayover(f),
+    }));
 
     // Save to history
     const record: PriceRecord = {
@@ -164,6 +198,8 @@ async function main(): Promise<void> {
         maxLayoverMinutes: maxLayover,
         dealTier,
         historicalStats,
+        isFirstObservation: previousLowest === null,
+        alternatives,
       };
 
       await sendPriceDropAlert(alert);

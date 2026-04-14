@@ -1,5 +1,5 @@
 import { formatDuration } from '../utils/duration.js';
-import type { PriceDropAlert } from '../types/index.js';
+import type { PriceDropAlert, FlightOption } from '../types/index.js';
 
 const TIER_CONFIG = {
   exceptional: {
@@ -20,6 +20,12 @@ const TIER_CONFIG = {
     bg: '#f3e8ff',
     description: 'New historical low for this date',
   },
+  tracking: {
+    label: 'NOW TRACKING',
+    color: '#6b7280',
+    bg: '#f3f4f6',
+    description: 'First observation — establishing baseline',
+  },
 } as const;
 
 /**
@@ -35,8 +41,15 @@ export async function sendPriceDropAlert(alert: PriceDropAlert): Promise<boolean
     return false;
   }
 
-  const tier = alert.dealTier ?? 'drop';
-  const tierCfg = TIER_CONFIG[tier];
+  // Decide which tier label to show
+  // Priority: exceptional > good > drop (real drop) > tracking (first obs, not a real drop)
+  let tierKey: keyof typeof TIER_CONFIG;
+  if (alert.dealTier === 'exceptional') tierKey = 'exceptional';
+  else if (alert.dealTier === 'good') tierKey = 'good';
+  else if (alert.isFirstObservation) tierKey = 'tracking';
+  else tierKey = 'drop';
+
+  const tierCfg = TIER_CONFIG[tierKey];
 
   const subject = `${tierCfg.label}: ${alert.airline} YYZ→DEL $${alert.newPrice.toLocaleString()} ${alert.currency} — ${alert.departureDate}`;
 
@@ -51,25 +64,27 @@ export async function sendPriceDropAlert(alert: PriceDropAlert): Promise<boolean
         Price: <strong style="color: ${tierCfg.color};">$${alert.newPrice.toLocaleString()} ${alert.currency}</strong>
        </p>`;
 
-  // Historical stats block (only shown after 2+ observations)
+  // Historical stats block
   const statsHtml = alert.historicalStats
     ? `<div style="background: #f9fafb; border-radius: 6px; padding: 12px 16px; margin: 16px 0; font-size: 14px; color: #555;">
         <strong>Route history (${alert.historicalStats.observations} checks)</strong><br>
-        Average price: $${alert.historicalStats.avg.toLocaleString()} ${alert.currency}<br>
+        Average: $${alert.historicalStats.avg.toLocaleString()} ${alert.currency} ·
         Lowest seen: $${alert.historicalStats.min.toLocaleString()} ${alert.currency}<br>
-        Today vs average: ${alert.newPrice < alert.historicalStats.avg
+        ${alert.newPrice < alert.historicalStats.avg
           ? `<span style="color: #16a34a;">$${(alert.historicalStats.avg - alert.newPrice).toLocaleString()} below average</span>`
           : `<span style="color: #dc2626;">$${(alert.newPrice - alert.historicalStats.avg).toLocaleString()} above average</span>`
         }
        </div>`
     : '';
 
+  // Alternatives block (top 3 airlines)
+  const alternativesHtml = buildAlternativesHtml(alert.alternatives, alert.currency);
+
   const googleFlightsUrl = buildGoogleFlightsUrl(alert);
 
   const html = `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; color: #111;">
 
-      <!-- Deal tier badge -->
       <div style="background: ${tierCfg.bg}; border-left: 4px solid ${tierCfg.color}; padding: 12px 16px; border-radius: 4px; margin-bottom: 16px;">
         <strong style="color: ${tierCfg.color}; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em;">
           ${tierCfg.label}
@@ -109,6 +124,7 @@ export async function sendPriceDropAlert(alert: PriceDropAlert): Promise<boolean
         </tr>
       </table>
 
+      ${alternativesHtml}
       ${statsHtml}
 
       <a href="${googleFlightsUrl}"
@@ -155,6 +171,44 @@ export async function sendPriceDropAlert(alert: PriceDropAlert): Promise<boolean
     console.error(`  Email error: ${message}`);
     return false;
   }
+}
+
+function buildAlternativesHtml(alternatives: FlightOption[], currency: string): string {
+  if (alternatives.length <= 1) return '';
+
+  const rows = alternatives.map((opt, i) => {
+    const isWinner = i === 0;
+    const bg = isWinner ? '#fef3c7' : '#ffffff';
+    const weight = isWinner ? '700' : '500';
+    const label = isWinner ? ' (cheapest)' : '';
+    return `
+      <tr style="background: ${bg}; border-bottom: 1px solid #eee;">
+        <td style="padding: 10px; font-weight: ${weight};">${opt.airline}${label}</td>
+        <td style="padding: 10px; color: #555; font-size: 13px;">${opt.route}</td>
+        <td style="padding: 10px; color: #555; font-size: 13px;">${formatDuration(opt.totalDuration)}, ${opt.stops} stop(s)</td>
+        <td style="padding: 10px; font-weight: ${weight}; text-align: right;">$${opt.price.toLocaleString()} ${currency}</td>
+      </tr>
+    `;
+  }).join('');
+
+  return `
+    <div style="margin: 20px 0;">
+      <h3 style="font-size: 14px; color: #555; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.05em;">Top options by airline</h3>
+      <table style="width: 100%; border-collapse: collapse; border: 1px solid #eee; border-radius: 6px; overflow: hidden; font-size: 14px;">
+        <thead>
+          <tr style="background: #f9fafb;">
+            <th style="padding: 10px; text-align: left; color: #555; font-weight: 600; font-size: 12px;">AIRLINE</th>
+            <th style="padding: 10px; text-align: left; color: #555; font-weight: 600; font-size: 12px;">ROUTE</th>
+            <th style="padding: 10px; text-align: left; color: #555; font-weight: 600; font-size: 12px;">TIME</th>
+            <th style="padding: 10px; text-align: right; color: #555; font-weight: 600; font-size: 12px;">PRICE</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows}
+        </tbody>
+      </table>
+    </div>
+  `;
 }
 
 function buildGoogleFlightsUrl(alert: PriceDropAlert): string {

@@ -43,6 +43,42 @@ export function findCheapestAcceptable(response: SerpApiResponse): SerpApiFlight
 }
 
 /**
+ * Return the top N cheapest acceptable flights, each from a DIFFERENT airline
+ * (so we see diversity, not 3 Etihad flights at slightly different prices).
+ */
+export function findTopCheapestByAirline(
+  response: SerpApiResponse,
+  n: number
+): SerpApiFlightResult[] {
+  const allFlights = getAllFlights(response);
+  const acceptable = allFlights.filter(isFlightAcceptable);
+  acceptable.sort((a, b) => a.price - b.price);
+
+  const seen = new Set<string>();
+  const result: SerpApiFlightResult[] = [];
+
+  for (const flight of acceptable) {
+    const airline = getAirline(flight);
+    if (seen.has(airline)) continue;
+    seen.add(airline);
+    result.push(flight);
+    if (result.length >= n) break;
+  }
+
+  return result;
+}
+
+/**
+ * Return ALL acceptable flights sorted by price (for logging/diagnostics).
+ */
+export function getAllAcceptable(response: SerpApiResponse): SerpApiFlightResult[] {
+  const allFlights = getAllFlights(response);
+  const acceptable = allFlights.filter(isFlightAcceptable);
+  acceptable.sort((a, b) => a.price - b.price);
+  return acceptable;
+}
+
+/**
  * Extract a human-readable route string from a flight result.
  * E.g. "YYZ-FCO-DEL" for a 1-stop via Rome.
  */

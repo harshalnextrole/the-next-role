@@ -2,7 +2,7 @@ import { CONFIG } from '../config.js';
 import type { SerpApiResponse } from '../types/index.js';
 
 /**
- * Search Google Flights via SerpAPI for business class flights.
+ * Search Google Flights via SerpAPI for premium economy flights.
  */
 export async function searchFlights(
   departureDate: string,
@@ -20,7 +20,7 @@ export async function searchFlights(
     arrival_id: CONFIG.DESTINATION,
     outbound_date: departureDate,
     return_date: returnDate,
-    travel_class: '3', // Business class
+    travel_class: '2', // Premium economy
     type: '1',         // Round trip
     stops: '2',        // Up to 1 stop
     currency: CONFIG.CURRENCY,

@@ -10,15 +10,15 @@ export const CONFIG = {
   TRIP_DURATION_DAYS: 21,
 
   /** First possible departure date */
-  SEARCH_START: '2026-10-01',
+  SEARCH_START: '2026-11-01',
 
   /** Last possible departure date (return must be by Dec 31) */
   SEARCH_END_DEPARTURE: '2026-12-10',
 
-  /** Days between each search date — 2 days covers Oct 3, 5, 7... catching gaps */
+  /** Days between each search date */
   DATE_INTERVAL_DAYS: 2,
 
-  /** Dates to check per run — 7/day × 30 days = 210 searches/month (under 250 free tier) */
+  /** Dates to check per run */
   DATES_PER_RUN: 7,
 
   /** Maximum total travel time per direction in minutes (26 hours) */
@@ -37,10 +37,9 @@ export const CONFIG = {
   API_DELAY_MS: 2000,
 
   /**
-   * Deal thresholds (CAD, round trip business class).
-   * Alerts fire when price drops below these regardless of whether it's a new low.
-   * Based on typical YYZ-DEL business class range of $3,500-$6,000 CAD.
+   * Deal thresholds (CAD, round trip premium economy).
+   * Typical YYZ-DEL premium economy: $1,500-$3,000 CAD.
    */
-  GOOD_DEAL_CAD: 3500,
-  EXCEPTIONAL_DEAL_CAD: 2500,
+  GOOD_DEAL_CAD: 1800,
+  EXCEPTIONAL_DEAL_CAD: 1200,
 } as const;

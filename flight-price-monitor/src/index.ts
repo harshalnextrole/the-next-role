@@ -73,7 +73,7 @@ function getNextBatch(allDates: ReturnType<typeof generateDatePairs>): ReturnTyp
 
 async function main(): Promise<void> {
   console.log('=== Flight Price Monitor ===');
-  console.log(`Route: ${CONFIG.ORIGIN} → ${CONFIG.DESTINATION} (Business Class)`);
+  console.log(`Route: ${CONFIG.ORIGIN} → ${CONFIG.DESTINATION} (Premium Economy)`);
   console.log(`Window: ${CONFIG.SEARCH_START} to ${CONFIG.SEARCH_END_DEPARTURE}`);
   console.log(`Trip: ${CONFIG.TRIP_DURATION_DAYS} days | Max travel: ${CONFIG.MAX_TRAVEL_TIME_MINUTES / 60}h`);
   console.log(`Thresholds: Good deal <$${CONFIG.GOOD_DEAL_CAD} | Exceptional <$${CONFIG.EXCEPTIONAL_DEAL_CAD}`);

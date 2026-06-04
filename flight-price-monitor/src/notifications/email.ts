@@ -92,7 +92,7 @@ export async function sendPriceDropAlert(alert: PriceDropAlert): Promise<boolean
         <span style="color: #555; font-size: 13px; margin-left: 8px;">${tierCfg.description}</span>
       </div>
 
-      <h2 style="margin: 0 0 4px; color: #1e3a5f;">Business Class: YYZ → DEL</h2>
+      <h2 style="margin: 0 0 4px; color: #1e3a5f;">Premium Economy: YYZ → DEL</h2>
       <p style="margin: 0 0 12px; color: #888; font-size: 14px;">Round trip, 1 adult</p>
 
       ${priceChangeHtml}
